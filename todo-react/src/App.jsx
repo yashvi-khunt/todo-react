@@ -1,35 +1,32 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import "./App.css";
+import TodoForm from "./components/TodoForm";
+import TodoList from "./components/TodoList";
+import { Provider } from "react-redux";
+import { store } from "../src/features/store";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Provider store={store}>
+        <div className="bg-white min-h-screen shadow-md  rounded-xl py-8">
+          <div className="w-full max-w-3xl mx-auto px-4 py-3 text-[#172842]">
+            <h1 className="text-2xl font-bold text-center mb-4 mt-2">
+              Manage Your Todos
+            </h1>
+            <div className="mb-4">
+              <TodoForm />
+            </div>
+            <div className="flex flex-wrap justify-center">
+              {/* <div className="w-full"> */}
+              <TodoList />
+              {/* </div> */}
+            </div>
+          </div>
+        </div>
+      </Provider>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
